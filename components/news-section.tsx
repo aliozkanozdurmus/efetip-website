@@ -4,39 +4,35 @@ import { useState } from "react"
 import { motion } from "framer-motion"
 import { useInView } from "framer-motion"
 import { useRef } from "react"
-import Image from "next/image"
 import { Calendar, Clock, X } from "lucide-react"
 
 const news = [
   {
     id: 1,
-    title: "Yeni Nesil Laboratuvar Cihazlarımız Artık Türkiye'de",
-    summary: "Son teknoloji laboratuvar ekipmanlarımız Türkiye pazarına sunuldu.",
+    title: "Transcutaneous Monitörler: tcpO2, tcpCO2 ve SpO2 Ölçümlerinin Klinik Önemi",
+    summary: "Transcutaneous monitörlerin çalışma prensipleri ve klinik uygulamalardaki kritik rolü.",
     content:
-      "Efetıp olarak, Avrupa'nın önde gelen laboratuvar ekipmanları üreticileriyle yaptığımız iş birliği sonucunda, son teknoloji ürünleri Türkiye pazarına sunmaktan gurur duyuyoruz. Yeni nesil dijital mikroskoplar, hassas teraziler ve otomatik analiz cihazları artık ürün yelpazemizde yerini aldı. Bu cihazlar, özellikle araştırma laboratuvarları ve tıbbi teşhis merkezleri için geliştirilmiş olup, yüksek hassasiyet ve güvenilirlik sunuyor. Yeni ürünlerimiz hakkında detaylı bilgi almak için satış temsilcilerimizle iletişime geçebilirsiniz.",
-    image: "/placeholder.svg?height=400&width=600",
-    date: "15 Haziran 2025",
-    readTime: "3 dk",
+      "Transcutaneous monitörler, hastanın cilt yüzeyinden non-invaziv olarak kan gazı değerlerini ölçen gelişmiş tıbbi cihazlardır. tcpO2 (transcutaneous oksijen basıncı) monitörleri, dokunun oksijen perfüzyonunu değerlendirerek özellikle yara iyileşmesi, diyabetik ayak ülserleri ve periferik arter hastalığının takibinde kritik bilgiler sağlar. tcpCO2 (transcutaneous karbondioksit basıncı) ölçümü ise ventilasyon durumunu değerlendirmek için kullanılır ve özellikle yoğun bakım hastalarında CO2 retansiyonunun erken tespitinde hayati önem taşır. SpO2 (pulse oksimetri) ise hemoglobinin oksijen satürasyonunu ölçerek solunum yetmezliğinin non-invaziv takibini sağlar. Bu monitörler, sürekli takip gerektiren hastalarda invaziv prosedürlere alternatif oluşturarak hasta konforunu artırır ve enfeksiyon riskini azaltır.",
+    date: "20 Haziran 2025",
+    readTime: "5 dk",
   },
   {
     id: 2,
-    title: "Laboratuvar Güvenliği Eğitimlerimiz Başlıyor",
-    summary: "Müşterilerimize özel laboratuvar güvenliği eğitim programımız Temmuz ayında başlıyor.",
+    title: "Transcutaneous Monitörlerin Teknolojik Gelişimi ve Klinik Uygulamaları",
+    summary: "Modern transcutaneous monitörlerin çalışma mekanizması ve hasta bakımındaki yeri.",
     content:
-      "Efetıp olarak, laboratuvar güvenliğinin öneminin farkındayız. Bu nedenle, müşterilerimize özel olarak hazırladığımız 'Laboratuvar Güvenliği ve İyi Uygulamalar' eğitim programımızı Temmuz ayında başlatıyoruz. Eğitimlerimiz, kimyasal madde güvenliği, acil durum prosedürleri, laboratuvar ekipmanlarının güvenli kullanımı ve atık yönetimi gibi kritik konuları kapsayacak. Uzman eğitmenlerimiz tarafından verilecek bu eğitimler, laboratuvar personelinin güvenlik bilincini artırmayı ve olası kazaları önlemeyi amaçlıyor. Eğitim programımıza katılmak için web sitemiz üzerinden kayıt yaptırabilirsiniz.",
-    image: "/placeholder.svg?height=400&width=600",
-    date: "10 Haziran 2025",
-    readTime: "4 dk",
+      "Transcutaneous monitörler, Clark elektrot teknolojisi ve gelişmiş sensör sistemleri kullanarak cilt altındaki kan gazı değerlerini gerçek zamanlı olarak ölçen sofistike tıbbi cihazlardır. Bu teknoloji, özellikle neonatal yoğun bakım ünitelerinde prematüre bebeklerin takibinde, yaşlı hastalarda dolaşım bozukluklarının değerlendirilmesinde ve kronik obstrüktif akciğer hastalığı (KOAH) olan hastaların ev bakımında kritik rol oynar. Cihazlar, ısıtılmış elektrotlar aracılığıyla cildi hiperemiyle duruma getirerek kapiller kan akımını artırır ve böylece arteriyel kan gazı değerlerine yakın sonuçlar elde eder. Modern transcutaneous monitörler, otomatik kalibrasyon, alarm sistemleri ve veri kayıt özellikleri ile donatılmıştır. Bu teknoloji, invaziv arteriyel kateterizasyon gereksinimini azaltarak hasta güvenliğini artırır ve sürekli monitörizasyon imkanı sağlar.",
+    date: "15 Haziran 2025",
+    readTime: "6 dk",
   },
   {
     id: 3,
-    title: "Uluslararası Laboratuvar Teknolojileri Fuarı'na Katılıyoruz",
-    summary: "Efetıp, bu yıl İstanbul'da düzenlenecek Uluslararası Laboratuvar Teknolojileri Fuarı'nda yerini alacak.",
+    title: "Immunoassay Testing: Modern Laboratuvar Tanısında Antikor-Antijen Etkileşimleri",
+    summary: "Immunoassay testlerinin prensipleri ve laboratuvar tanısındaki uygulamaları.",
     content:
-      "Efetıp olarak, 5-8 Eylül 2025 tarihleri arasında İstanbul Fuar Merkezi'nde düzenlenecek olan Uluslararası Laboratuvar Teknolojileri Fuarı'na katılacağımızı duyurmaktan mutluluk duyuyoruz. Standımızda, en yeni ürünlerimizi sergileyecek ve ziyaretçilerimize özel tanıtımlar yapacağız. Ayrıca, fuarda uzman ekibimiz tarafından düzenlenecek mini seminerler ile laboratuvar teknolojilerindeki son gelişmeleri paylaşacağız. Tüm müşterilerimizi ve sektör profesyonellerini standımıza bekliyoruz. Fuar boyunca özel indirimler ve kampanyalarımızdan yararlanma fırsatını kaçırmayın!",
-    image: "/placeholder.svg?height=400&width=600",
-    date: "5 Haziran 2025",
-    readTime: "5 dk",
+      "Immunoassay testing, antikor-antijen spesifik etkileşimlerini kullanarak çeşitli biyomarkörlerin kantitatif ve kalitatif analizini yapan gelişmiş laboratuvar tekniğidir. ELISA (Enzyme-Linked Immunosorbent Assay), CLIA (Chemiluminescent Immunoassay) ve ECLIA (Electrochemiluminescence Immunoassay) gibi farklı metodolojiler kullanılarak hormonlar, tümör belirteçleri, enfeksiyon ajanları, ilaç seviyeleri ve otoimmün hastalık belirteçleri hassas bir şekilde ölçülür. Bu testler, pikomolar seviyelerinde analitleri tespit edebilme kapasitesi ile klinik tanıda vazgeçilmez hale gelmiştir. Özellikle kardiyak belirteçler (troponin, CK-MB), tiroid fonksiyon testleri (TSH, T3, T4), hepatit belirteçleri ve COVID-19 antikor testlerinde yaygın kullanım alanı bulur. Modern immunoassay sistemleri, otomatizasyon, yüksek throughput kapasitesi ve gelişmiş kalite kontrol mekanizmaları ile laboratuvar verimliliğini artırır ve hızlı sonuç alma imkanı sağlar.",
+    date: "10 Haziran 2025",
+    readTime: "7 dk",
   },
 ]
 
@@ -73,10 +69,10 @@ export default function NewsSection() {
         <div className="container mx-auto px-4 md:px-6 max-w-7xl">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">
-              Haberler
+              Bilimsel Makaleler
             </h2>
             <p className="text-gray-500 max-w-2xl mx-auto">
-              Efetıp'tan en güncel haberler, duyurular ve etkinlikler hakkında bilgi alın.
+              Laboratuvar teknolojileri ve tıbbi cihazlar hakkında güncel bilimsel gelişmeler.
             </p>
           </div>
 
@@ -91,38 +87,27 @@ export default function NewsSection() {
               <motion.div
                 key={item.id}
                 variants={itemVariants}
-                className="bg-white border border-gray-100 rounded-xl overflow-hidden hover:border-blue-300 hover:shadow-md transition-all duration-300 cursor-pointer"
+                className="bg-white border border-gray-100 rounded-xl overflow-hidden hover:border-blue-300 hover:shadow-md transition-all duration-300 cursor-pointer p-6"
                 onClick={() => setSelectedNews(item)}
               >
-                <div className="aspect-[16/9] overflow-hidden">
-                  <Image
-                    src={item.image || "/placeholder.svg"}
-                    alt={item.title}
-                    width={600}
-                    height={400}
-                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-                  />
-                </div>
-                <div className="p-6">
-                  <div className="flex items-center gap-4 mb-3">
-                    <div className="flex items-center text-gray-400 text-sm">
-                      <Calendar className="w-4 h-4 mr-1" />
-                      {item.date}
-                    </div>
-                    <div className="flex items-center text-gray-400 text-sm">
-                      <Clock className="w-4 h-4 mr-1" />
-                      {item.readTime}
-                    </div>
+                <div className="flex items-center gap-4 mb-3">
+                  <div className="flex items-center text-gray-400 text-sm">
+                    <Calendar className="w-4 h-4 mr-1" />
+                    {item.date}
                   </div>
-                  <h3 className="text-xl font-semibold text-gray-800 mb-2">{item.title}</h3>
-                  <p className="text-gray-500 mb-4">{item.summary}</p>
-                  <button
-                    className="text-blue-600 font-medium hover:text-blue-700 transition-colors duration-200"
-                    onClick={() => setSelectedNews(item)}
-                  >
-                    Devamını Oku
-                  </button>
+                  <div className="flex items-center text-gray-400 text-sm">
+                    <Clock className="w-4 h-4 mr-1" />
+                    {item.readTime}
+                  </div>
                 </div>
+                <h3 className="text-xl font-semibold text-gray-800 mb-2">{item.title}</h3>
+                <p className="text-gray-500 mb-4">{item.summary}</p>
+                <button
+                  className="text-blue-600 font-medium hover:text-blue-700 transition-colors duration-200"
+                  onClick={() => setSelectedNews(item)}
+                >
+                  Devamını Oku
+                </button>
               </motion.div>
             ))}
           </motion.div>
@@ -136,27 +121,17 @@ export default function NewsSection() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.9 }}
-            className="bg-white rounded-xl shadow-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto"
+            className="bg-white rounded-xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto"
           >
-            <div className="relative">
-              <div className="aspect-[16/9] overflow-hidden">
-                <Image
-                  src={selectedNews.image || "/placeholder.svg"}
-                  alt={selectedNews.title}
-                  width={1200}
-                  height={675}
-                  className="w-full h-full object-cover"
-                />
-              </div>
+            <div className="relative p-6 md:p-8">
               <button
-                className="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/80 backdrop-blur-sm flex items-center justify-center text-gray-700 hover:bg-white transition-colors duration-200"
+                className="absolute top-4 right-4 w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-700 hover:bg-gray-200 transition-colors duration-200"
                 onClick={() => setSelectedNews(null)}
               >
                 <X size={18} />
               </button>
-            </div>
-            <div className="p-6 md:p-8">
-              <div className="flex items-center gap-4 mb-3">
+
+              <div className="flex items-center gap-4 mb-4">
                 <div className="flex items-center text-gray-400 text-sm">
                   <Calendar className="w-4 h-4 mr-1" />
                   {selectedNews.date}
@@ -166,11 +141,15 @@ export default function NewsSection() {
                   {selectedNews.readTime}
                 </div>
               </div>
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-4">{selectedNews.title}</h2>
-              <p className="text-gray-500 leading-relaxed">{selectedNews.content}</p>
+
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-6">{selectedNews.title}</h2>
+              <div className="prose prose-lg max-w-none">
+                <p className="text-gray-600 leading-relaxed text-justify">{selectedNews.content}</p>
+              </div>
+
               <div className="mt-8 flex justify-end">
                 <button
-                  className="px-4 py-2 rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200 transition-colors duration-200"
+                  className="px-6 py-2 rounded-full bg-blue-600 text-white hover:bg-blue-700 transition-colors duration-200"
                   onClick={() => setSelectedNews(null)}
                 >
                   Kapat

@@ -2,14 +2,12 @@
 
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import Image from "next/image"
 import { ChevronLeft, ChevronRight, Quote } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 const testimonials = [
   {
     id: 1,
-    name: "Prof. Dr. Ahmet Yılmaz",
     role: "Kimya Bölümü Başkanı",
     image: "/placeholder.svg?height=100&width=100",
     content:
@@ -17,7 +15,6 @@ const testimonials = [
   },
   {
     id: 2,
-    name: "Dr. Ayşe Kaya",
     role: "Biyoloji Laboratuvarı Yöneticisi",
     image: "/placeholder.svg?height=100&width=100",
     content:
@@ -25,7 +22,6 @@ const testimonials = [
   },
   {
     id: 3,
-    name: "Mehmet Demir",
     role: "Medikal Laboratuvar Teknisyeni",
     image: "/placeholder.svg?height=100&width=100",
     content:
@@ -77,7 +73,7 @@ export default function TestimonialSlider() {
       <div className="container mx-auto px-4 md:px-6 max-w-7xl relative z-10">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">
-            Müşteri Yorumları
+            Müşteri Referansları
           </h2>
           <p className="text-gray-500 max-w-2xl mx-auto">
             Müşterilerimizin Efetıp deneyimleri hakkında ne söylediklerini öğrenin.
@@ -96,24 +92,11 @@ export default function TestimonialSlider() {
               transition={{ duration: 0.5, ease: "easeInOut" }}
               className="bg-white border border-gray-100 rounded-xl p-8 md:p-10 shadow-md"
             >
-              <div className="flex flex-col md:flex-row items-center md:items-start gap-6">
-                <div className="flex-shrink-0">
-                  <div className="relative w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden border-2 border-blue-500/30">
-                    <Image
-                      src={testimonials[currentIndex].image || "/placeholder.svg"}
-                      alt={testimonials[currentIndex].name}
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                </div>
-                <div className="flex-grow">
-                  <Quote className="w-10 h-10 text-blue-300 mb-4" />
-                  <p className="text-gray-600 text-lg md:text-xl mb-6 italic">"{testimonials[currentIndex].content}"</p>
-                  <div>
-                    <h4 className="text-gray-800 font-semibold text-lg">{testimonials[currentIndex].name}</h4>
-                    <p className="text-gray-500">{testimonials[currentIndex].role}</p>
-                  </div>
+              <div className="text-center">
+                <Quote className="w-12 h-12 text-blue-300 mx-auto mb-6" />
+                <p className="text-gray-600 text-lg md:text-xl mb-6 italic">"{testimonials[currentIndex].content}"</p>
+                <div>
+                  <p className="text-gray-800 font-semibold text-lg">{testimonials[currentIndex].role}</p>
                 </div>
               </div>
             </motion.div>

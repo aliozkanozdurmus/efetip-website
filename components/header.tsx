@@ -3,8 +3,9 @@
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
-import { ChevronDown, Menu, X } from "lucide-react"
+import { Menu, X } from "lucide-react"
 
 const navItems = [
   {
@@ -12,29 +13,31 @@ const navItems = [
     href: "/",
   },
   {
-    name: "Ürünler",
-    href: "#",
-    submenu: [
-      { name: "Laboratuvar Cihazları", href: "/urunler/laboratuvar-cihazlari" },
-      { name: "Cam Malzemeler", href: "/urunler/cam-malzemeler" },
-      { name: "Sarf Malzemeleri", href: "/urunler/sarf-malzemeleri" },
-      { name: "Kimyasallar", href: "/urunler/kimyasallar" },
-    ],
+    name: "Ürünlerimiz",
+    href: "/urunlerimiz",
   },
   {
     name: "Hakkımızda",
     href: "/hakkimizda",
   },
   {
+    name: "Haberler",
+    href: "#haberler",
+  },
+  {
+    name: "Referanslar",
+    href: "#referanslar",
+  },
+  {
     name: "İletişim",
-    href: "/iletisim",
+    href: "#iletisim",
   },
 ]
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const [activeSubmenu, setActiveSubmenu] = useState<string | null>(null)
+  const pathname = usePathname()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -44,6 +47,16 @@ export default function Header() {
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
+
+  const handleNavClick = (href: string) => {
+    if (href.startsWith("#")) {
+      const element = document.querySelector(href)
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" })
+      }
+    }
+    setMobileMenuOpen(false)
+  }
 
   return (
     <motion.header
@@ -67,40 +80,24 @@ export default function Header() {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-6">
             {navItems.map((item) => (
-              <div
-                key={item.name}
-                className="relative"
-                onMouseEnter={() => item.submenu && setActiveSubmenu(item.name)}
-                onMouseLeave={() => setActiveSubmenu(null)}
-              >
-                <Link
-                  href={item.href}
-                  className="text-gray-600 hover:text-blue-600 transition-colors duration-200 flex items-center gap-1"
-                >
-                  {item.name}
-                  {item.submenu && <ChevronDown size={14} />}
-                </Link>
-
-                {item.submenu && activeSubmenu === item.name && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 10 }}
-                    transition={{ duration: 0.2 }}
-                    className="absolute top-full left-0 mt-2 w-64 bg-white backdrop-blur-md border border-gray-100 rounded-lg shadow-lg shadow-blue-100/10 overflow-hidden"
+              <div key={item.name} className="relative">
+                {item.href.startsWith("#") ? (
+                  <button
+                    onClick={() => handleNavClick(item.href)}
+                    className="text-gray-600 hover:text-blue-600 transition-colors duration-200"
                   >
-                    <div className="py-2">
-                      {item.submenu.map((subitem) => (
-                        <Link
-                          key={subitem.name}
-                          href={subitem.href}
-                          className="block px-4 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50/50 transition-colors duration-200"
-                        >
-                          {subitem.name}
-                        </Link>
-                      ))}
-                    </div>
-                  </motion.div>
+                    {item.name}
+                  </button>
+                ) : (
+                  <Link
+                    href={item.href}
+                    className={cn(
+                      "text-gray-600 hover:text-blue-600 transition-colors duration-200",
+                      pathname === item.href && "text-blue-600 font-medium",
+                    )}
+                  >
+                    {item.name}
+                  </Link>
                 )}
               </div>
             ))}
@@ -126,50 +123,25 @@ export default function Header() {
             <div className="container mx-auto px-4 py-4">
               <nav className="flex flex-col gap-4">
                 {navItems.map((item) => (
-                  <div key={item.name} className="flex flex-col">
-                    <div
-                      className="flex justify-between items-center"
-                      onClick={() => {
-                        if (item.submenu) {
-                          setActiveSubmenu(activeSubmenu === item.name ? null : item.name)
-                        }
-                      }}
-                    >
-                      <Link
-                        href={item.href}
+                  <div key={item.name}>
+                    {item.href.startsWith("#") ? (
+                      <button
+                        onClick={() => handleNavClick(item.href)}
                         className="text-gray-600 hover:text-blue-600 transition-colors duration-200"
                       >
                         {item.name}
-                      </Link>
-                      {item.submenu && (
-                        <ChevronDown
-                          size={16}
-                          className={cn(
-                            "text-gray-400 transition-transform duration-300",
-                            activeSubmenu === item.name && "transform rotate-180",
-                          )}
-                        />
-                      )}
-                    </div>
-
-                    {item.submenu && activeSubmenu === item.name && (
-                      <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: "auto" }}
-                        exit={{ opacity: 0, height: 0 }}
-                        transition={{ duration: 0.2 }}
-                        className="ml-4 mt-2 flex flex-col gap-2"
+                      </button>
+                    ) : (
+                      <Link
+                        href={item.href}
+                        className={cn(
+                          "text-gray-600 hover:text-blue-600 transition-colors duration-200",
+                          pathname === item.href && "text-blue-600 font-medium",
+                        )}
+                        onClick={() => setMobileMenuOpen(false)}
                       >
-                        {item.submenu.map((subitem) => (
-                          <Link
-                            key={subitem.name}
-                            href={subitem.href}
-                            className="text-gray-500 hover:text-blue-600 transition-colors duration-200 py-1"
-                          >
-                            {subitem.name}
-                          </Link>
-                        ))}
-                      </motion.div>
+                        {item.name}
+                      </Link>
                     )}
                   </div>
                 ))}
