@@ -6,13 +6,12 @@ import { useState } from "react"
 import { motion } from "framer-motion"
 import { useInView } from "framer-motion"
 import { useRef } from "react"
-import { Mail, Phone, MapPin, Send } from "lucide-react"
+import { Mail, MapPin, Send } from "lucide-react"
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    phone: "",
     subject: "",
     message: "",
   })
@@ -40,7 +39,6 @@ export default function ContactForm() {
       setFormData({
         name: "",
         email: "",
-        phone: "",
         subject: "",
         message: "",
       })
@@ -88,18 +86,6 @@ export default function ContactForm() {
                         <br />
                         Şehitkamil / Gaziantep
                       </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0">
-                      <Phone className="w-6 h-6 text-blue-600" />
-                    </div>
-                    <div>
-                      <h4 className="font-semibold text-gray-800 mb-1">Telefon</h4>
-                      <a href="tel:+903423605858" className="text-gray-600 hover:text-blue-600 transition-colors">
-                        0 342 360 58 58
-                      </a>
                     </div>
                   </div>
 
@@ -187,41 +173,25 @@ export default function ContactForm() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
-                      Telefon
-                    </label>
-                    <input
-                      type="tel"
-                      id="phone"
-                      name="phone"
-                      value={formData.phone}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:border-blue-500 transition-colors"
-                      placeholder="0XXX XXX XX XX"
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
-                      Konu *
-                    </label>
-                    <select
-                      id="subject"
-                      name="subject"
-                      value={formData.subject}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:border-blue-500 transition-colors"
-                    >
-                      <option value="">Konu seçiniz</option>
-                      <option value="urun-bilgi">Ürün Bilgisi</option>
-                      <option value="fiyat-teklifi">Fiyat Teklifi</option>
-                      <option value="teknik-destek">Teknik Destek</option>
-                      <option value="satis-sonrasi">Satış Sonrası Hizmet</option>
-                      <option value="genel">Genel Bilgi</option>
-                    </select>
-                  </div>
+                <div>
+                  <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
+                    Konu *
+                  </label>
+                  <select
+                    id="subject"
+                    name="subject"
+                    value={formData.subject}
+                    onChange={handleChange}
+                    required
+                    className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:border-blue-500 transition-colors"
+                  >
+                    <option value="">Konu seçiniz</option>
+                    <option value="urun-bilgi">Ürün Bilgisi</option>
+                    <option value="fiyat-teklifi">Fiyat Teklifi</option>
+                    <option value="teknik-destek">Teknik Destek</option>
+                    <option value="satis-sonrasi">Satış Sonrası Hizmet</option>
+                    <option value="genel">Genel Bilgi</option>
+                  </select>
                 </div>
 
                 <div>

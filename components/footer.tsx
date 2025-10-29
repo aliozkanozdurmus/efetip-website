@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { motion } from "framer-motion"
-import { Mail, Phone, MapPin, ArrowRight, Twitter, Linkedin, Facebook } from "lucide-react"
+import { Mail, Phone, MapPin, ArrowRight, Twitter, Linkedin, Facebook, Instagram } from "lucide-react"
 
 export default function Footer() {
   return (
@@ -22,9 +22,10 @@ export default function Footer() {
               Türkiye'nin lider laboratuvar ekipmanları tedarikçisi olarak, en son teknolojiyi ve güvenilir çözümleri sunuyoruz.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-gray-400 hover:text-white transition-colors"><Twitter size={20} /></a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors"><Linkedin size={20} /></a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors"><Facebook size={20} /></a>
+              <a href="https://twitter.com/efetip" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors"><Twitter size={20} /></a>
+              <a href="https://linkedin.com/company/efetip" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors"><Linkedin size={20} /></a>
+              <a href="https://facebook.com/efetip" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors"><Facebook size={20} /></a>
+              <a href="https://instagram.com/efetip" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors"><Instagram size={20} /></a>
             </div>
           </div>
 
@@ -35,7 +36,7 @@ export default function Footer() {
               <li><Link href="/" className="text-gray-400 hover:text-white transition-colors">Ana Sayfa</Link></li>
               <li><Link href="/urunlerimiz" className="text-gray-400 hover:text-white transition-colors">Ürünler</Link></li>
               <li><Link href="/hakkimizda" className="text-gray-400 hover:text-white transition-colors">Hakkımızda</Link></li>
-              <li><Link href="/#iletisim" className="text-gray-400 hover:text-white transition-colors">İletişim</Link></li>
+              <li><Link href="/iletisim" className="text-gray-400 hover:text-white transition-colors">İletişim</Link></li>
             </ul>
           </div>
 

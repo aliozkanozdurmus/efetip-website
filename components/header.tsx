@@ -1,171 +1,243 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { motion, AnimatePresence } from "framer-motion"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
-import { Menu, X, Phone, Mail, MapPin, ArrowRight, Shield, Activity } from "lucide-react"
+import { Home, Info, Newspaper, Star, Mail, ChevronDown, Droplet, Monitor, Beaker, Bot, Network, Syringe, Database, FlaskConical, Menu, X } from "lucide-react"
+
+const solutionItems = [
+  { name: "Kan Gazı Testleri", href: "/urunlerimiz/kan-gazi-testleri", icon: Droplet },
+  { name: "Transkutanöz İzleme", href: "/urunlerimiz/transkutanoz-izleme", icon: Monitor },
+  { name: "İmmünokimya Testleri", href: "/urunlerimiz/immunokimya-testleri", icon: Beaker },
+  { name: "1st Automatic", href: "/urunlerimiz/first-automatic", icon: Bot },
+  { name: "Merkezi Kontrol ile AQURE", href: "/urunlerimiz/merkezi-kontrol-aqure", icon: Network },
+  { name: "Kan Gazı Şırıngaları", href: "/urunlerimiz/kan-gazi-siringalari", icon: Syringe },
+  { name: "Veri Analizleri", href: "/urunlerimiz/veri-analizleri-uzaktan-destek", icon: Database },
+  { name: "KK Ampulleri", href: "/urunlerimiz/kk-ampulleri", icon: FlaskConical },
+];
 
 const navItems = [
-  {
-    name: "Ana Sayfa",
-    href: "/",
-  },
-  {
-    name: "Ürünlerimiz",
-    href: "/urunlerimiz",
-  },
-  {
-    name: "Hakkımızda",
-    href: "/hakkimizda",
-  },
-  {
-    name: "Haberler",
-    href: "#haberler",
-  },
-  {
-    name: "Referanslar",
-    href: "#referanslar",
-  },
-  {
-    name: "İletişim",
-    href: "#iletisim",
-  },
+  { name: "Ana Sayfa", href: "/", icon: Home },
+  { name: "Hakkımızda", href: "/hakkimizda", icon: Info },
+  { name: "Haberler", href: "/haberler", icon: Newspaper },
+  { name: "Referanslar", href: "/referanslar", icon: Star },
+  { name: "İletişim", href: "/iletisim", icon: Mail },
 ]
 
 export default function Header() {
-  const [scrolled, setScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
   const pathname = usePathname()
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20)
     }
-
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  const handleNavClick = (href: string) => {
-    if (href.startsWith("#")) {
-      const element = document.querySelector(href)
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth" })
-      }
-    }
-    setMobileMenuOpen(false)
-  }
-
   return (
-    <motion.header
-      initial={{ y: -100, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.5 }}
-      className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300 relative overflow-hidden",
-        scrolled ? "bg-white/95 backdrop-blur-md py-3 shadow-xl shadow-blue-100/30" : "bg-gradient-to-r from-white/80 via-blue-50/80 to-indigo-50/80 backdrop-blur-md py-6",
-      )}
-    >
-      {/* Creative Background Elements */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 left-0 w-32 h-32 bg-gradient-to-br from-blue-400/10 to-transparent rounded-full blur-2xl"></div>
-        <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-indigo-400/10 to-transparent rounded-full blur-2xl"></div>
-        <div className="absolute bottom-0 left-1/3 w-20 h-20 bg-gradient-to-tr from-cyan-400/5 to-transparent rounded-full blur-xl"></div>
-      </div>
-      
-      <div className="container mx-auto px-4 md:px-6 relative">
-        <div className="flex items-center justify-between">
-          <Link href="/" className="flex items-center">
-            <img 
-              src="/logo.png" 
-              alt="Efe Tıp" 
-              className="h-12 md:h-16 w-auto"
-            />
+    <header className={cn(
+      "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+      scrolled 
+        ? "bg-white/95 backdrop-blur-lg shadow-lg border-b border-gray-100/50" 
+        : "bg-white/90 backdrop-blur-md border-b border-gray-100/30"
+    )}>
+      <div className="container mx-auto px-4 md:px-6">
+        {/* Top Bar */}
+        <div className="hidden lg:flex items-center justify-between py-2 border-b border-gray-100/50">
+          <div className="text-sm text-gray-600">
+            Pazartesi - Cuma: 09:00 - 18:00
+          </div>
+          <div className="text-sm text-gray-600">
+            info@efetip.com.tr
+          </div>
+        </div>
+
+        {/* Main Navigation */}
+        <div className="flex items-center justify-between py-4">
+          <Link href="/" className="flex items-center group">
+            <div className="relative overflow-hidden rounded-lg">
+              <img 
+                src="/logo.png" 
+                alt="Efe Tıp" 
+                className="h-12 md:h-14 w-auto transition-transform duration-300 group-hover:scale-105" 
+              />
+            </div>
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-6">
-            {navItems.map((item, index) => (
-              <div key={item.name} className="relative group">
-                {item.href.startsWith("#") ? (
-                  <button
-                    onClick={() => handleNavClick(item.href)}
-                    className="relative px-4 py-2 text-gray-600 hover:text-blue-600 transition-all duration-300 font-medium"
-                  >
-                    {item.name}
-                    <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300"></div>
-                  </button>
-                ) : (
-                  <Link
-                    href={item.href}
-                    className={cn(
-                      "relative px-4 py-2 text-gray-600 hover:text-blue-600 transition-all duration-300 font-medium",
-                      pathname === item.href && "text-blue-600 font-medium",
-                    )}
-                  >
-                    {item.name}
-                    <div className={cn(
-                      "absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300",
-                      pathname === item.href && "scale-100 bg-gradient-to-r from-blue-500/20 to-indigo-500/20"
-                    )}></div>
-                  </Link>
-                )}
-                {index === 0 && (
-                  <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full animate-pulse"></div>
-                )}
+          <nav className="hidden lg:flex items-center gap-1">
+            {/* Ana Sayfa */}
+            {navItems.slice(0, 1).map((item) => {
+              const Icon = item.icon
+              const isActive = pathname === item.href
+              return (
+                <Link 
+                  key={item.name} 
+                  href={item.href} 
+                  className={cn(
+                    "flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-300 relative group",
+                    isActive 
+                      ? "text-blue-600 bg-blue-50" 
+                      : "text-gray-700 hover:text-blue-600 hover:bg-gray-50"
+                  )}
+                >
+                  <Icon size={16} className={cn(
+                    "transition-colors duration-300",
+                    isActive ? "text-blue-600" : "text-gray-500 group-hover:text-blue-600"
+                  )} />
+                  <span>{item.name}</span>
+                  <div className={cn(
+                    "absolute bottom-0 left-1/2 w-0 h-0.5 bg-blue-600 transition-all duration-300 -translate-x-1/2",
+                    isActive ? "w-8" : "group-hover:w-8"
+                  )} />
+                </Link>
+              )
+            })}
+
+            {/* Solutions Dropdown - Right after Ana Sayfa */}
+            <div className="relative group ml-2">
+              <button className={cn(
+                "flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-300 relative group",
+                "text-gray-700 hover:text-blue-600 hover:bg-gray-50"
+              )}>
+                <Beaker size={16} className="text-gray-500 group-hover:text-blue-600 transition-colors duration-300" />
+                <span>Çözümler</span>
+                <ChevronDown 
+                  size={14} 
+                  className="transition-transform duration-300 group-hover:rotate-180 text-gray-500 group-hover:text-blue-600" 
+                />
+                <div className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-blue-600 transition-all duration-300 -translate-x-1/2 group-hover:w-8" />
+              </button>
+              
+              {/* Dropdown Menu */}
+              <div className="absolute left-1/2 -translate-x-1/2 mt-3 w-80 bg-white/95 backdrop-blur-lg rounded-xl shadow-2xl border border-gray-100/50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                <div className="p-2">
+                  {solutionItems.map((item, index) => {
+                    const Icon = item.icon
+                    return (
+                      <Link 
+                        key={item.name} 
+                        href={item.href} 
+                        className={cn(
+                          "flex items-center gap-3 px-4 py-3 rounded-lg text-sm transition-all duration-200",
+                          "text-gray-700 hover:text-blue-600 hover:bg-blue-50/50",
+                          index === 0 && "rounded-t-lg",
+                          index === solutionItems.length - 1 && "rounded-b-lg"
+                        )}
+                      >
+                        <div className="p-2 rounded-md bg-blue-50">
+                          <Icon size={18} className="text-blue-600" />
+                        </div>
+                        <div className="flex-1">
+                          <span className="font-medium">{item.name}</span>
+                        </div>
+                        <ChevronDown size={14} className="rotate-270 text-gray-400" />
+                      </Link>
+                    )
+                  })}
+                </div>
               </div>
-            ))}
+            </div>
+
+            {/* Other Nav Items */}
+            {navItems.slice(1).map((item) => {
+              const Icon = item.icon
+              const isActive = pathname === item.href || (item.href !== "/" && pathname.startsWith(item.href))
+              return (
+                <Link 
+                  key={item.name} 
+                  href={item.href} 
+                  className={cn(
+                    "flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-300 relative group",
+                    isActive 
+                      ? "text-blue-600 bg-blue-50" 
+                      : "text-gray-700 hover:text-blue-600 hover:bg-gray-50"
+                  )}
+                >
+                  <Icon size={16} className={cn(
+                    "transition-colors duration-300",
+                    isActive ? "text-blue-600" : "text-gray-500 group-hover:text-blue-600"
+                  )} />
+                  <span>{item.name}</span>
+                  <div className={cn(
+                    "absolute bottom-0 left-1/2 w-0 h-0.5 bg-blue-600 transition-all duration-300 -translate-x-1/2",
+                    isActive ? "w-8" : "group-hover:w-8"
+                  )} />
+                </Link>
+              )
+            })}
           </nav>
 
           {/* Mobile Menu Button */}
-          <button className="md:hidden text-gray-600" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+          <button 
+            className="lg:hidden p-2 rounded-lg text-gray-600 hover:text-blue-600 hover:bg-gray-50 transition-colors duration-200" 
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          >
             {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
       </div>
 
       {/* Mobile Menu */}
-      <AnimatePresence>
-        {mobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-            className="md:hidden bg-white/95 backdrop-blur-md border-t border-gray-100"
-          >
-            <div className="container mx-auto px-4 py-4">
-              <nav className="flex flex-col gap-4">
-                {navItems.map((item) => (
-                  <div key={item.name}>
-                    {item.href.startsWith("#") ? (
-                      <button
-                        onClick={() => handleNavClick(item.href)}
-                        className="text-gray-600 hover:text-blue-600 transition-colors duration-200"
-                      >
-                        {item.name}
-                      </button>
-                    ) : (
-                      <Link
-                        href={item.href}
-                        className={cn(
-                          "text-gray-600 hover:text-blue-600 transition-colors duration-200",
-                          pathname === item.href && "text-blue-600 font-medium",
-                        )}
-                        onClick={() => setMobileMenuOpen(false)}
-                      >
-                        {item.name}
-                      </Link>
-                    )}
-                  </div>
-                ))}
-              </nav>
+      <div className={cn(
+        "lg:hidden overflow-hidden transition-all duration-300",
+        mobileMenuOpen ? "max-h-96" : "max-h-0"
+      )}>
+        <div className="bg-white/95 backdrop-blur-lg border-t border-gray-100/50">
+          <div className="px-4 py-4 space-y-1">
+            {navItems.map((item) => {
+              const Icon = item.icon
+              const isActive = pathname === item.href || (item.href !== "/" && pathname.startsWith(item.href))
+              return (
+                <Link 
+                  key={item.name} 
+                  href={item.href} 
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={cn(
+                    "flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200",
+                    isActive 
+                      ? "text-blue-600 bg-blue-50" 
+                      : "text-gray-700 hover:text-blue-600 hover:bg-gray-50"
+                  )}
+                >
+                  <Icon size={18} className={cn(
+                    "transition-colors duration-200",
+                    isActive ? "text-blue-600" : "text-gray-500"
+                  )} />
+                  <span>{item.name}</span>
+                </Link>
+              )
+            })}
+            
+            {/* Mobile Solutions */}
+            <div className="border-t border-gray-100/50 pt-3 mt-2">
+              <div className="px-4 py-2 text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                Çözümler
+              </div>
+              {solutionItems.map((item) => {
+                const Icon = item.icon
+                return (
+                  <Link 
+                    key={item.name} 
+                    href={item.href} 
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition-all duration-200"
+                  >
+                    <div className="p-1.5 rounded-md bg-blue-50">
+                      <Icon size={16} className="text-blue-600" />
+                    </div>
+                    <span>{item.name}</span>
+                  </Link>
+                )
+              })}
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.header>
+          </div>
+        </div>
+      </div>
+    </header>
   )
 }
