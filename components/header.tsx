@@ -34,9 +34,22 @@ export default function Header() {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20)
     }
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
+    
+    // Add passive listener for better performance
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    
+    // Initial check
+    handleScroll()
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
   }, [])
+
+  // Close mobile menu when route changes
+  useEffect(() => {
+    setMobileMenuOpen(false)
+  }, [pathname])
 
   return (
     <header className={cn(
@@ -45,25 +58,25 @@ export default function Header() {
         ? "bg-white/95 backdrop-blur-lg shadow-lg border-b border-gray-100/50" 
         : "bg-white/90 backdrop-blur-md border-b border-gray-100/30"
     )}>
-      <div className="container mx-auto px-4 md:px-6">
-        {/* Top Bar */}
-        <div className="hidden lg:flex items-center justify-between py-2 border-b border-gray-100/50">
-          <div className="text-sm text-gray-600">
+      <div className="container-mobile">
+        {/* Top Bar - Hidden on small mobile */}
+        <div className="hidden md:flex items-center justify-between py-2 border-b border-gray-100/50 text-xs sm:text-sm">
+          <div className="text-gray-600">
             Pazartesi - Cuma: 09:00 - 18:00
           </div>
-          <div className="text-sm text-gray-600">
+          <div className="text-gray-600">
             info@efetip.com.tr
           </div>
         </div>
 
         {/* Main Navigation */}
-        <div className="flex items-center justify-between py-4">
+        <div className="flex items-center justify-between py-3 sm:py-4">
           <Link href="/" className="flex items-center group">
             <div className="relative overflow-hidden rounded-lg">
               <img 
                 src="/logo.png" 
                 alt="Efe Tıp" 
-                className="h-12 md:h-14 w-auto transition-transform duration-300 group-hover:scale-105" 
+                className="h-10 sm:h-12 md:h-14 w-auto transition-transform duration-300 group-hover:scale-105" 
               />
             </div>
           </Link>
@@ -79,42 +92,45 @@ export default function Header() {
                   key={item.name} 
                   href={item.href} 
                   className={cn(
-                    "flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-300 relative group",
+                    "flex items-center gap-2 px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-sm font-medium transition-all duration-300 relative group",
                     isActive 
                       ? "text-blue-600 bg-blue-50" 
                       : "text-gray-700 hover:text-blue-600 hover:bg-gray-50"
                   )}
                 >
-                  <Icon size={16} className={cn(
+                  <Icon size={14} className={cn(
                     "transition-colors duration-300",
                     isActive ? "text-blue-600" : "text-gray-500 group-hover:text-blue-600"
                   )} />
-                  <span>{item.name}</span>
+                  <span className="hidden sm:inline">{item.name}</span>
                   <div className={cn(
                     "absolute bottom-0 left-1/2 w-0 h-0.5 bg-blue-600 transition-all duration-300 -translate-x-1/2",
-                    isActive ? "w-8" : "group-hover:w-8"
+                    isActive ? "w-6 sm:w-8" : "group-hover:w-6 sm:group-hover:w-8"
                   )} />
                 </Link>
               )
             })}
 
             {/* Solutions Dropdown - Right after Ana Sayfa */}
-            <div className="relative group ml-2">
+            <div className="relative group ml-1 sm:ml-2">
               <button className={cn(
-                "flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-300 relative group",
+                "flex items-center gap-2 px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-sm font-medium transition-all duration-300 relative group",
                 "text-gray-700 hover:text-blue-600 hover:bg-gray-50"
               )}>
-                <Beaker size={16} className="text-gray-500 group-hover:text-blue-600 transition-colors duration-300" />
-                <span>Çözümler</span>
+                <Beaker size={14} className="text-gray-500 group-hover:text-blue-600 transition-colors duration-300" />
+                <span className="hidden sm:inline">Çözümler</span>
                 <ChevronDown 
-                  size={14} 
-                  className="transition-transform duration-300 group-hover:rotate-180 text-gray-500 group-hover:text-blue-600" 
+                  size={12} 
+                  className="transition-transform duration-300 group-hover:rotate-180 text-gray-500 group-hover:text-blue-600 hidden sm:block" 
                 />
-                <div className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-blue-600 transition-all duration-300 -translate-x-1/2 group-hover:w-8" />
+                <div className={cn(
+                  "absolute bottom-0 left-1/2 w-0 h-0.5 bg-blue-600 transition-all duration-300 -translate-x-1/2",
+                  "group-hover:w-6 sm:group-hover:w-8"
+                )} />
               </button>
               
               {/* Dropdown Menu */}
-              <div className="absolute left-1/2 -translate-x-1/2 mt-3 w-80 bg-white/95 backdrop-blur-lg rounded-xl shadow-2xl border border-gray-100/50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+              <div className="absolute left-1/2 -translate-x-1/2 mt-2 sm:mt-3 w-72 sm:w-80 bg-white/95 backdrop-blur-lg rounded-xl shadow-2xl border border-gray-100/50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
                 <div className="p-2">
                   {solutionItems.map((item, index) => {
                     const Icon = item.icon
@@ -123,19 +139,19 @@ export default function Header() {
                         key={item.name} 
                         href={item.href} 
                         className={cn(
-                          "flex items-center gap-3 px-4 py-3 rounded-lg text-sm transition-all duration-200",
+                          "flex items-center gap-2 sm:gap-3 px-3 sm:px-4 py-2 sm:py-3 rounded-lg text-xs sm:text-sm transition-all duration-200",
                           "text-gray-700 hover:text-blue-600 hover:bg-blue-50/50",
                           index === 0 && "rounded-t-lg",
                           index === solutionItems.length - 1 && "rounded-b-lg"
                         )}
                       >
-                        <div className="p-2 rounded-md bg-blue-50">
-                          <Icon size={18} className="text-blue-600" />
+                        <div className="p-1.5 sm:p-2 rounded-md bg-blue-50 flex-shrink-0">
+                          <Icon size={14} className="sm:w-[18px] sm:h-[18px] text-blue-600" />
                         </div>
-                        <div className="flex-1">
-                          <span className="font-medium">{item.name}</span>
+                        <div className="flex-1 min-w-0">
+                          <span className="font-medium text-xs sm:text-sm truncate">{item.name}</span>
                         </div>
-                        <ChevronDown size={14} className="rotate-270 text-gray-400" />
+                        <ChevronDown size={12} className="rotate-270 text-gray-400 flex-shrink-0" />
                       </Link>
                     )
                   })}
@@ -152,20 +168,20 @@ export default function Header() {
                   key={item.name} 
                   href={item.href} 
                   className={cn(
-                    "flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-300 relative group",
+                    "flex items-center gap-2 px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-sm font-medium transition-all duration-300 relative group",
                     isActive 
                       ? "text-blue-600 bg-blue-50" 
                       : "text-gray-700 hover:text-blue-600 hover:bg-gray-50"
                   )}
                 >
-                  <Icon size={16} className={cn(
+                  <Icon size={14} className={cn(
                     "transition-colors duration-300",
                     isActive ? "text-blue-600" : "text-gray-500 group-hover:text-blue-600"
                   )} />
-                  <span>{item.name}</span>
+                  <span className="hidden sm:inline">{item.name}</span>
                   <div className={cn(
                     "absolute bottom-0 left-1/2 w-0 h-0.5 bg-blue-600 transition-all duration-300 -translate-x-1/2",
-                    isActive ? "w-8" : "group-hover:w-8"
+                    isActive ? "w-6 sm:w-8" : "group-hover:w-6 sm:group-hover:w-8"
                   )} />
                 </Link>
               )
@@ -176,16 +192,17 @@ export default function Header() {
           <button 
             className="lg:hidden p-2 rounded-lg text-gray-600 hover:text-blue-600 hover:bg-gray-50 transition-colors duration-200" 
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle menu"
           >
-            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
       </div>
 
       {/* Mobile Menu */}
       <div className={cn(
-        "lg:hidden overflow-hidden transition-all duration-300",
-        mobileMenuOpen ? "max-h-96" : "max-h-0"
+        "lg:hidden overflow-hidden transition-all duration-300 ease-in-out",
+        mobileMenuOpen ? "max-h-screen" : "max-h-0"
       )}>
         <div className="bg-white/95 backdrop-blur-lg border-t border-gray-100/50">
           <div className="px-4 py-4 space-y-1">
@@ -204,14 +221,14 @@ export default function Header() {
                       : "text-gray-700 hover:text-blue-600 hover:bg-gray-50"
                   )}
                 >
-                  <Icon size={18} className={cn(
+                  <Icon size={16} className={cn(
                     "transition-colors duration-200",
                     isActive ? "text-blue-600" : "text-gray-500"
                   )} />
                   <span>{item.name}</span>
                 </Link>
               )
-            })}
+            })}            
             
             {/* Mobile Solutions */}
             <div className="border-t border-gray-100/50 pt-3 mt-2">
@@ -228,9 +245,9 @@ export default function Header() {
                     className="flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition-all duration-200"
                   >
                     <div className="p-1.5 rounded-md bg-blue-50">
-                      <Icon size={16} className="text-blue-600" />
+                      <Icon size={14} className="text-blue-600" />
                     </div>
-                    <span>{item.name}</span>
+                    <span className="text-sm">{item.name}</span>
                   </Link>
                 )
               })}

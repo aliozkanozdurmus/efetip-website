@@ -3,18 +3,17 @@ import Footer from "@/components/footer"
 import { ProductHero } from "@/components/product-hero"
 import { ClinicalSettings } from "@/components/clinical-settings"
 import { ProductCategory } from "@/components/product-category"
-import { DownloadHandbook } from "@/components/download-handbook"
 
 export default function ProductsPage() {
   const categories = [
-    { title: "Kan Gazı Testleri", description: "Akut bakım ve hastane iş akışınıza sorunsuz bir şekilde uyum sağlayabilen esnek bir kan gazı teşhis çözümü.", link: "/urunlerimiz/kan-gazi-testleri" },
+    { title: "Kan Gazı Testleri", description: "Akut bakım ve hastane iş akışına sorunsuz bir şekilde uyum sağlayabilen esnek bir kan gazı teşhis çözümü.", link: "/urunlerimiz/kan-gazi-testleri" },
     { title: "Transkutanöz İzleme", description: "Non-invaziv, gerçek zamanlı ve sürekli hasta ventilasyonu ve oksijenasyon izlemi.", link: "/urunlerimiz/transkutanoz-izleme" },
-    { title: "İmmünokimya Testleri", description: "Geniş bir kritik biyobelirteç yelpazesinde 11-21 dakikada sonuç alın.", link: "/urunlerimiz/immunokimya-testleri" },
+    { title: "İmmünokimya Testleri", description: "Geniş bir biyobelirteç yelpazesinde 11-21 dakikada sonuç alın.", link: "/urunlerimiz/immunokimya-testleri" },
     { title: "1st Automatic", description: "1st Automatic ile hasta-örnek karışıklığı riskini azaltın. Ön analitik hataları en aza indirmeye yardımcı olmak için tasarlanmış bir iş akışı çözümü.", link: "/urunlerimiz/first-automatic" },
     { title: "Merkezi Kontrol ile AQURE", description: "AQURE, POC IT kurulumunuzun performansını yönetmek için size tam bir genel bakış ve erişim sağlar.", link: "/urunlerimiz/merkezi-kontrol-aqure" },
-    { title: "Kan Gazı Şırıngaları ve Kılcal Tüpler", description: "Güvenilir test sonuçları sağlamak üzere tasarlanmış numune alıcılarımızla kan alma ihtiyaçlarınızı karşılayın.", link: "/urunlerimiz/kan-gazi-siringalari" },
-    { title: "Veri Analizleri ve Uzaktan Destek", description: "Sorunları gidermeyi, analizör çalışma süresini artırmayı ve veriye dayalı operasyonel kararlar almayı kolaylaştıran uzaktan performans izleme.", link: "/urunlerimiz/veri-analizleri-uzaktan-destek" },
-    { title: "Kan Gazı Analizörleri için KK Ampulleri", description: "Akut bakım teşhisi için KK prosedürlerini otomatikleştirin, basitleştirin ve yasal uyumluluğu destekleyin.", link: "/urunlerimiz/kk-ampulleri" },
+    { title: "Kan Gazı Şırıngaları ve Kılcal Tüpler", description: "Güvenilir test sonuçları sağlamak üzere tasarlanmış sayıya alıcılarımızla kan alma ihtiyaçlarınızı karşılayın.", link: "/urunlerimiz/kan-gazi-siringalari" },
+    { title: "Veri Analizleri ve Uzaktan Destek", description: "Sorunları gidermeyi, analizör çalışma sürecini artırın ve veriye dayalı operasyonel kararlar almayı kolaylaştıran uzaktan performans izleme.", link: "/urunlerimiz/veri-analizleri-uzaktan-destek" },
+    { title: "Kan Gazı Analizörleri için KK Ampulleri", description: "Akut bakım teşhisi için KK prosedürlerini otomatikleştirin, başlatın ve yasal uyumluluğu destekleyin.", link: "/urunlerimiz/kk-ampulleri" },
   ];
 
   return (
@@ -31,8 +30,6 @@ export default function ProductsPage() {
             </div>
           </div>
         </div>
-
-        <DownloadHandbook />
       </div>
       <Footer />
     </main>

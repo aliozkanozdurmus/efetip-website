@@ -86,7 +86,7 @@ export default function AQT90FlexPage() {
 
                 <div className="flex flex-col sm:flex-row gap-4">
                   <a
-                    href="mailto:efetip@efetip.com.tr?subject=AQT90 FLEX Fiyat Teklifi Talebi"
+                    href="mailto:info@efetip.com.tr?subject=AQT90 FLEX Fiyat Teklifi Talebi"
                     className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-medium rounded-lg hover:shadow-lg hover:shadow-blue-500/20 transition-all duration-300"
                   >
                     <Mail size={18} />
@@ -397,7 +397,7 @@ export default function AQT90FlexPage() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a
-                  href="mailto:efetip@efetip.com.tr?subject=AQT90 FLEX Fiyat Teklifi Talebi&body=Merhaba,%0D%0A%0D%0AAQT90 FLEX immunoassay analizörü hakkında detaylı bilgi ve fiyat teklifi almak istiyorum.%0D%0A%0D%0ATeşekkürler."
+                  href="mailto:info@efetip.com.tr?subject=AQT90 FLEX Fiyat Teklifi Talebi&body=Merhaba,%0D%0A%0D%0AAQT90 FLEX immunoassay analizörü hakkında detaylı bilgi ve fiyat teklifi almak istiyorum.%0D%0A%0D%0ATeşekkürler."
                   className="inline-flex items-center justify-center gap-2 px-8 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-medium rounded-lg hover:shadow-lg hover:shadow-blue-500/20 transition-all duration-300"
                 >
                   <Mail size={18} />

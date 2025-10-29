@@ -104,7 +104,7 @@ export default function TCM5BasicPage() {
 
                 <div className="flex flex-col sm:flex-row gap-4">
                   <a
-                    href="mailto:efetip@efetip.com.tr?subject=TCM5 BASIC Fiyat Teklifi Talebi"
+                    href="mailto:info@efetip.com.tr?subject=TCM5 BASIC Fiyat Teklifi Talebi"
                     className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-medium rounded-lg hover:shadow-lg hover:shadow-blue-500/20 transition-all duration-300"
                   >
                     <Mail size={18} />
