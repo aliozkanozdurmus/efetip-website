@@ -69,15 +69,23 @@ export default function StatsSection() {
   }, [isInView])
 
   return (
-    <section className="py-20 bg-white relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-100 via-transparent to-indigo-100 blur-3xl" />
+    <section className="py-20 relative bg-gray-800">
+      {/* Background Image with Overlay */}
+      <div className="absolute inset-0">
+        <img
+          src="/lab.jpg"
+          alt="Laboratuvar Arka Planı"
+          className="w-full h-full object-cover opacity-50"
+        />
+        <div className="absolute inset-0 bg-black/50"></div>
+      </div>
 
       <div className="container mx-auto px-4 md:px-6 max-w-7xl relative z-10">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
             Rakamlarla Efetıp
           </h2>
-          <p className="text-gray-500 max-w-2xl mx-auto">
+          <p className="text-gray-300 max-w-2xl mx-auto">
             Yılların deneyimi ve güveniyle laboratuvar ekipmanları sektöründe öncü konumumuzu sürdürüyoruz.
           </p>
         </div>
@@ -89,16 +97,16 @@ export default function StatsSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="bg-white border border-gray-100 rounded-xl p-6 text-center hover:border-blue-300 hover:shadow-md transition-all duration-300"
+              className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-6 text-center hover:bg-white/20 transition-all duration-300"
             >
-              <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-r from-blue-100 to-indigo-100 flex items-center justify-center">
-                <stat.icon className="w-8 h-8 text-blue-600" />
+              <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-white/20 flex items-center justify-center">
+                <stat.icon className="w-8 h-8 text-white" />
               </div>
-              <div className="text-4xl font-bold text-gray-800 mb-2">
+              <div className="text-4xl font-bold text-white mb-2">
                 {counts[index]}
-                <span className="text-blue-600">{stat.suffix}</span>
+                <span className="text-blue-300">{stat.suffix}</span>
               </div>
-              <p className="text-gray-500">{stat.label}</p>
+              <p className="text-gray-300">{stat.label}</p>
             </motion.div>
           ))}
         </div>

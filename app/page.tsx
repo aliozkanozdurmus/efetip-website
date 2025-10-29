@@ -1,5 +1,6 @@
 import HeroGeometric from "@/components/kokonutui/hero-geometric"
 import Header from "@/components/header"
+import FeaturedProducts from "@/components/featured-products"
 import StatsSection from "@/components/stats-section"
 import NewsSection from "@/components/news-section"
 import TestimonialSlider from "@/components/testimonial-slider"
@@ -13,6 +14,9 @@ export default function Home() {
       <Header />
       <section id="anasayfa">
         <HeroGeometric title1="En Parlak Günleri" title2="Geri Getiriyoruz" />
+      </section>
+      <section id="urunler">
+        <FeaturedProducts />
       </section>
       <section id="hakkimizda">
         <StatsSection />

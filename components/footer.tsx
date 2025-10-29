@@ -1,229 +1,74 @@
 "use client"
 
-import type React from "react"
-
-import { useState } from "react"
-import { motion } from "framer-motion"
-import { Mail, Phone, MapPin, ArrowRight, Shield, Heart, Globe, Award } from "lucide-react"
-import { cn } from "@/lib/utils"
 import Link from "next/link"
+import { motion } from "framer-motion"
+import { Mail, Phone, MapPin, ArrowRight, Twitter, Linkedin, Facebook } from "lucide-react"
 
 export default function Footer() {
-  const [email, setEmail] = useState("")
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [isSubmitted, setIsSubmitted] = useState(false)
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubmitting(true)
-
-    // Simulate API call
-    setTimeout(() => {
-      setIsSubmitting(false)
-      setIsSubmitted(true)
-      setEmail("")
-
-      // Reset success message after 3 seconds
-      setTimeout(() => {
-        setIsSubmitted(false)
-      }, 3000)
-    }, 1000)
-  }
-
-  const handleNavClick = (href: string) => {
-    if (href.startsWith("#")) {
-      const element = document.querySelector(href)
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth" })
-      }
-    }
-  }
-
   return (
-    <footer className="bg-gray-50 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-t from-blue-100/30 via-transparent to-transparent" />
-
-      <div className="container mx-auto px-4 md:px-6 max-w-7xl relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 py-16">
-          <div>
-            <button onClick={() => handleNavClick("#anasayfa")} className="group flex items-center gap-3 mb-6 p-3 rounded-xl bg-gradient-to-r from-blue-50 to-indigo-50 hover:from-blue-100 hover:to-indigo-100 transition-all duration-300 shadow-md hover:shadow-lg">
-              <div className="relative">
-                <img 
-                  src="/logo.png" 
-                  alt="Efe Tıp" 
-                  className="h-12 w-auto transition-transform duration-300 group-hover:scale-110"
-                />
-                <div className="absolute -inset-1 bg-gradient-to-r from-blue-500/20 to-indigo-500/20 rounded-xl blur-sm"></div>
-              </div>
-              <div className="flex flex-col">
-                <span className="text-lg font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-                  EFE TIP
-                </span>
-                <span className="text-xs text-gray-500 font-medium">
-                  Laboratuvar Çözümleri
-                </span>
-              </div>
-            </button>
-            <div className="flex flex-wrap gap-3 mb-4">
-              <div className="flex items-center gap-2 px-3 py-2 bg-blue-50 rounded-lg">
-                <Shield className="w-4 h-4 text-blue-600" />
-                <span className="text-sm text-gray-700 font-medium">Güvenilir</span>
-              </div>
-              <div className="flex items-center gap-2 px-3 py-2 bg-green-50 rounded-lg">
-                <Award className="w-4 h-4 text-green-600" />
-                <span className="text-sm text-gray-700 font-medium">Kaliteli</span>
-              </div>
-              <div className="flex items-center gap-2 px-3 py-2 bg-purple-50 rounded-lg">
-                <Globe className="w-4 h-4 text-purple-600" />
-                <span className="text-sm text-gray-700 font-medium">Global</span>
-              </div>
+    <footer className="bg-gray-900 text-white">
+      <div className="container mx-auto px-4 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+          {/* Logo and About */}
+          <div className="md:col-span-2 lg:col-span-1">
+            <Link href="/" className="inline-block mb-6">
+              <img 
+                src="/logo.png" 
+                alt="Efe Tıp" 
+                className="h-12 w-auto"
+              />
+            </Link>
+            <p className="text-gray-400 text-sm leading-relaxed mb-6">
+              Türkiye'nin lider laboratuvar ekipmanları tedarikçisi olarak, en son teknolojiyi ve güvenilir çözümleri sunuyoruz.
+            </p>
+            <div className="flex space-x-4">
+              <a href="#" className="text-gray-400 hover:text-white transition-colors"><Twitter size={20} /></a>
+              <a href="#" className="text-gray-400 hover:text-white transition-colors"><Linkedin size={20} /></a>
+              <a href="#" className="text-gray-400 hover:text-white transition-colors"><Facebook size={20} /></a>
             </div>
-            <p className="text-gray-500 mb-6">
-              Laboratuvar ekipmanları alanında Türkiye'nin öncü tedarikçisi. Kalite ve güvenilirlik bizim
-              önceliğimizdir.
-            </p>
           </div>
 
+          {/* Quick Links */}
           <div>
-            <h3 className="text-gray-800 font-semibold text-lg mb-6">Hızlı Bağlantılar</h3>
+            <h3 className="text-lg font-semibold mb-6 tracking-wider">Hızlı Bağlantılar</h3>
             <ul className="space-y-3">
-              <li>
-                <button
-                  onClick={() => handleNavClick("#anasayfa")}
-                  className="text-gray-500 hover:text-blue-600 transition-colors duration-200"
-                >
-                  Ana Sayfa
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => handleNavClick("#urunler")}
-                  className="text-gray-500 hover:text-blue-600 transition-colors duration-200"
-                >
-                  Ürünler
-                </button>
-              </li>
-              <li>
-                <Link href="/hakkimizda" className="text-gray-500 hover:text-blue-600 transition-colors duration-200">
-                  Hakkımızda
-                </Link>
-              </li>
-              <li>
-                <button
-                  onClick={() => handleNavClick("#haberler")}
-                  className="text-gray-500 hover:text-blue-600 transition-colors duration-200"
-                >
-                  Haberler
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => handleNavClick("#iletisim")}
-                  className="text-gray-500 hover:text-blue-600 transition-colors duration-200"
-                >
-                  İletişim
-                </button>
-              </li>
-              <li>
-                <Link
-                  href="/gizlilik-politikasi"
-                  className="text-gray-500 hover:text-blue-600 transition-colors duration-200"
-                >
-                  Gizlilik Politikası
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/kvkk"
-                  className="text-gray-500 hover:text-blue-600 transition-colors duration-200"
-                >
-                  KVKK
-                </Link>
-              </li>
+              <li><Link href="/" className="text-gray-400 hover:text-white transition-colors">Ana Sayfa</Link></li>
+              <li><Link href="/urunlerimiz" className="text-gray-400 hover:text-white transition-colors">Ürünler</Link></li>
+              <li><Link href="/hakkimizda" className="text-gray-400 hover:text-white transition-colors">Hakkımızda</Link></li>
+              <li><Link href="/#iletisim" className="text-gray-400 hover:text-white transition-colors">İletişim</Link></li>
             </ul>
           </div>
 
+          {/* Legal Links */}
           <div>
-            <h3 className="text-gray-800 font-semibold text-lg mb-6">İletişim</h3>
-            <ul className="space-y-4">
-              <li className="flex items-start gap-3">
-                <MapPin className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
-                <span className="text-gray-500">
-                  3. Organize Sanayi Bölgesi Kamil Şerbetçi Bulvarı No: 39, Şehitkamil / Gaziantep
-                </span>
-              </li>
-              <li className="flex items-center gap-3">
-                <Phone className="w-5 h-5 text-blue-600 flex-shrink-0" />
-                <a
-                  href="tel:+903423605858"
-                  className="text-gray-500 hover:text-blue-600 transition-colors duration-200"
-                >
-                  0 342 360 58 58
-                </a>
-              </li>
-              <li className="flex items-center gap-3">
-                <Mail className="w-5 h-5 text-blue-600 flex-shrink-0" />
-                <a
-                  href="mailto:info@efetip.com.tr"
-                  className="text-gray-500 hover:text-blue-600 transition-colors duration-200"
-                >
-                  info@efetip.com.tr
-                </a>
-              </li>
+            <h3 className="text-lg font-semibold mb-6 tracking-wider">Yasal</h3>
+            <ul className="space-y-3">
+              <li><Link href="/gizlilik-politikasi" className="text-gray-400 hover:text-white transition-colors">Gizlilik Politikası</Link></li>
+              <li><Link href="/kvkk" className="text-gray-400 hover:text-white transition-colors">KVKK Aydınlatma Metni</Link></li>
             </ul>
           </div>
 
+          {/* Contact & Newsletter */}
           <div>
-            <h3 className="text-gray-800 font-semibold text-lg mb-6">Bülten</h3>
-            <p className="text-gray-500 mb-4">
-              Yeni ürünler ve kampanyalardan haberdar olmak için bültenimize abone olun.
+            <h3 className="text-lg font-semibold mb-6 tracking-wider">Bültenimize Abone Olun</h3>
+            <p className="text-gray-400 text-sm mb-4">
+              En son haberler ve özel teklifler için kaydolun.
             </p>
-            <form onSubmit={handleSubmit} className="space-y-3">
-              <div className="relative">
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="E-posta adresiniz"
-                  required
-                  className="w-full px-4 py-3 rounded-full bg-white border border-gray-200 text-gray-800 placeholder:text-gray-400 focus:outline-none focus:border-blue-500"
-                />
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className={cn(
-                    "absolute right-1 top-1 bottom-1 px-4 rounded-full",
-                    "bg-gradient-to-r from-blue-600 to-indigo-600",
-                    "text-white font-medium",
-                    "hover:shadow-lg hover:shadow-blue-500/20 transition-all duration-300",
-                    "flex items-center justify-center",
-                    isSubmitting && "opacity-70",
-                  )}
-                >
-                  {isSubmitting ? (
-                    <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                  ) : (
-                    <ArrowRight size={18} />
-                  )}
-                </button>
-              </div>
-              {isSubmitted && (
-                <motion.p
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="text-green-400 text-sm"
-                >
-                  Bültene başarıyla abone oldunuz!
-                </motion.p>
-              )}
+            <form className="flex">
+              <input
+                type="email"
+                placeholder="E-posta adresiniz"
+                className="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-l-md text-white focus:outline-none focus:border-blue-500"
+              />
+              <button className="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-r-md transition-colors">
+                <ArrowRight size={20} />
+              </button>
             </form>
           </div>
         </div>
 
-        <div className="border-t border-gray-200 py-6">
-          <div className="text-center">
-            <p className="text-gray-500 text-sm">&copy; {new Date().getFullYear()} Efetıp. Tüm hakları saklıdır.</p>
-          </div>
+        <div className="mt-16 pt-8 border-t border-gray-800 text-center text-gray-500 text-sm">
+          <p>&copy; {new Date().getFullYear()} Efe Tıp Medikal. Tüm hakları saklıdır.</p>
         </div>
       </div>
     </footer>
