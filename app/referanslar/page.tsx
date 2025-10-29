@@ -6,9 +6,8 @@ export default function ReferanslarPage() {
   const testimonials = [
     {
       id: 1,
-      name: "Dr. Mehmet Yılmaz",
-      position: "Lab. Müdürü",
-      company: "Acıbadem Hastanesi",
+      name: "Lab. Müdürü",
+      position: "Özel Hastane",
       city: "İstanbul",
       rating: 5,
       content: "Efe Tıp'ın sunduğu kan gazı analiz cihazları laboratuvarımızın verimliliğini %40 artırdı. Teknik destekleri ve hizmet kaliteleri gerçekten takdire şayan. 7/24 ulaşılabilir olmaları bizi büyük bir yükten kurtardı.",
@@ -16,9 +15,8 @@ export default function ReferanslarPage() {
     },
     {
       id: 2,
-      name: "Dr. Ayşe Kaya",
-      position: "Biyokimya Uzmanı",
-      company: "Memorial Hastanesi",
+      name: "Biyokimya Uzmanı",
+      position: "Üniversite Hastanesi",
       city: "Ankara",
       rating: 5,
       content: "Yeni nesil hemoklinometri cihazları sayesinde test sonuçlarımız çok daha hızlı ve doğru. Kullanıcı arayüzleri çok intuitif ve eğitim destekları muhteşem. Personelimiz kısa sürede adaptasyon sağladı.",
@@ -26,9 +24,8 @@ export default function ReferanslarPage() {
     },
     {
       id: 3,
-      name: "Dr. Ali Demir",
-      position: "Klinik Direktörü",
-      company: "Medical Park Hastanesi",
+      name: "Klinik Direktörü",
+      position: "Devlet Hastanesi",
       city: "İzmir",
       rating: 5,
       content: "5 yıldır Efe Tıp ile çalışıyoruz ve hiçbir sorun yaşamadık. Cihazların kalitesi, servis hizmetleri ve personellerinin uzmanlığı fark yaratıyor. Tercihimizi her zaman onlardan yana kullanırız.",
@@ -36,19 +33,17 @@ export default function ReferanslarPage() {
     },
     {
       id: 4,
-      name: "Dr. Zeynep Öztürk",
-      position: "Acil Servis Sorumlusu",
-      company: "Liv Hospital",
+      name: "Acil Servis Sorumlusu",
+      position: "Özel Hastane",
       city: "Bursa",
       rating: 5,
-      content: "Acil durum müdahale süreleri gerçekten etkileyici. Geçen ay bir arızamız oldu ve 2 saat içinde teknik ekip sorunu çözdü. Bu hız ve kalite pazarda rare.",
+      content: "Acil durum müdahale süreleri gerçekten etkileyici. Geçen ay bir arızamız oldu ve 2 saat içinde teknik ekip sorunu çözdü. Bu hız ve kalite pazarda ender rastlanan bir durum.",
       logo: "/placeholder-logo.png"
     },
     {
       id: 5,
-      name: "Dr. Mustafa Çelik",
-      position: "Kalite Koordinatörü",
-      company: "Anadolu Sağlık Merkezi",
+      name: "Kalite Koordinatörü",
+      position: "Araştırma Hastanesi",
       city: "Kocaeli",
       rating: 5,
       content: "Akıllı veri yönetim sistemleri sayesinde laboratuvar verilerimizi çok daha etkili yönetiyoruz. Entegrasyon süreçleri çok sorunsuz ve teknik destek her zaman hazır.",
@@ -56,12 +51,11 @@ export default function ReferanslarPage() {
     },
     {
       id: 6,
-      name: "Dr. Fatma Polat",
-      position: "Lab. Teknikeri",
-      company: "Şişli Etfal Hastanesi",
+      name: "Lab. Teknikeri",
+      position: "Özel Hastane",
       city: "İstanbul",
       rating: 5,
-      content: "Cihaz bakım ve servis hizmetleri mükemmel. Periyodik kontroller zamanında yapılıyor ve olası sorunlar öngörülerek önleniyor. Çalıştığım en iyi tedarikçi.",
+      content: "Cihaz bakım ve servis hizmetleri mükemmel. Periyodik kontroller zamanında yapılıyor ve olası sorunlar öngörülerek önleniyor. Çalıştığımız en iyi tedarikçi.",
       logo: "/placeholder-logo.png"
     }
   ]
@@ -90,7 +84,7 @@ export default function ReferanslarPage() {
   ]
 
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen bg-white pt-16 sm:pt-20 md:pt-24">
       <Header />
       
       {/* Hero Section */}
@@ -150,14 +144,14 @@ export default function ReferanslarPage() {
                 key={testimonial.id}
                 className="bg-white rounded-xl p-5 sm:p-6 shadow-sm hover:shadow-lg transition-all duration-300 group"
               >
-                {/* Company Header */}
+                {/* Person Header */}
                 <div className="flex items-center gap-3 sm:gap-4 mb-4 sm:mb-6">
                   <div className="w-12 h-12 sm:w-14 sm:h-14 bg-gray-100 rounded-lg flex items-center justify-center flex-shrink-0">
                     <Building size={20} className="sm:w-[24px] sm:h-[24px] text-gray-600" />
                   </div>
                   <div className="flex-1 min-w-0">
                     <h3 className="font-bold text-gray-900 text-sm sm:text-base truncate">
-                      {testimonial.company}
+                      {testimonial.position}
                     </h3>
                     <div className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm text-gray-500">
                       <MapPin size={10} className="w-3 h-3 sm:w-4 sm:h-4" />
@@ -202,37 +196,6 @@ export default function ReferanslarPage() {
         </div>
       </section>
 
-      {/* Partners Section */}
-      <section className="py-8 sm:py-12 lg:py-16 bg-white">
-        <div className="container-mobile">
-          <div className="text-center mb-8 sm:mb-12">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4 text-gray-900">
-              İş Ortaklarımız
-            </h2>
-            <p className="text-sm sm:text-base text-gray-600 max-w-2xl mx-auto px-4 sm:px-0">
-              Türkiye'nin önde gelen sağlık kuruluşlarıyla çalışıyoruz
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 sm:gap-6 lg:gap-8">
-            {[
-              "Acıbadem", "Memorial", "Medical Park", "Liv Hospital", 
-              "Anadolu Sağlık", "Şişli Etfal", "Florence", 
-              "Medicana", "Yeditepe", "Kolan", "Bayındır"
-            ].map((partner, index) => (
-              <div 
-                key={partner}
-                className="bg-gray-50 rounded-xl p-4 sm:p-6 flex items-center justify-center h-20 sm:h-24 lg:h-28 border border-gray-200 hover:border-blue-200 hover:bg-blue-50 transition-all duration-300 group"
-              >
-                <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gray-200 rounded-lg flex items-center justify-center text-xs sm:text-sm font-medium text-gray-600 group-hover:text-blue-600">
-                  {partner.slice(0, 3).toUpperCase()}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* CTA Section */}
       <section className="py-12 sm:py-16 lg:py-20 bg-gradient-to-r from-blue-600 to-indigo-600">
         <div className="container-mobile">
@@ -245,14 +208,6 @@ export default function ReferanslarPage() {
               Türkiye'nin en çok tercih edilen laboratuvar ekipmanları tedarikçisi olmaktan gurur duyuyoruz. 
               Size özel çözümlerimiz için bizimle iletişime geçin.
             </p>
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4 sm:px-0">
-              <button className="btn-touch bg-white text-blue-600 hover:bg-gray-50 px-6 sm:px-8 py-3 rounded-lg font-medium transition-all duration-200 min-w-[44px]">
-                Hemen Başvurun
-              </button>
-              <button className="btn-touch border-2 border-white text-white hover:bg-white/10 px-6 sm:px-8 py-3 rounded-lg font-medium transition-all duration-200 min-w-[44px]">
-                Referansları İnceleyin
-              </button>
-            </div>
           </div>
         </div>
       </section>
