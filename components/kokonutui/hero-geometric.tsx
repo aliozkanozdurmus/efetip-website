@@ -77,11 +77,9 @@ function ElegantShape({
 }
 
 export default function HeroGeometric({
-  badge = "Efetıp",
-  title1 = "Modern Laboratuvar",
-  title2 = "Çözümleri",
+  title1 = "En Parlak Günleri",
+  title2 = "Geri Getiriyoruz",
 }: {
-  badge?: string
   title1?: string
   title2?: string
 }) {
@@ -93,7 +91,7 @@ export default function HeroGeometric({
       transition: {
         duration: 1,
         delay: 0.5 + i * 0.2,
-        ease: [0.25, 0.4, 0.25, 1],
+        ease: [0.25, 0.4, 0.25, 1] as const,
       },
     }),
   }
@@ -151,18 +149,6 @@ export default function HeroGeometric({
 
       <div className="relative z-10 container mx-auto px-4 md:px-6">
         <div className="max-w-3xl mx-auto text-center">
-          <motion.div
-            custom={0}
-            variants={fadeUpVariants}
-            initial="hidden"
-            animate="visible"
-            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-100 mb-8 md:mb-12"
-          >
-            <div className="w-5 h-5 rounded-full bg-blue-500 flex items-center justify-center">
-              <div className="w-3 h-3 rounded-full bg-white"></div>
-            </div>
-            <span className="text-sm text-gray-600 tracking-wide">{badge}</span>
-          </motion.div>
 
           <motion.div custom={1} variants={fadeUpVariants} initial="hidden" animate="visible">
             <h1 className="text-4xl sm:text-6xl md:text-8xl font-bold mb-6 md:mb-8 tracking-tight">

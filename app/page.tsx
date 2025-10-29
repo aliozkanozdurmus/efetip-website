@@ -12,7 +12,7 @@ export default function Home() {
     <main className="min-h-screen bg-white">
       <Header />
       <section id="anasayfa">
-        <HeroGeometric badge="Efetıp" title1="Modern Laboratuvar" title2="Çözümleri" />
+        <HeroGeometric title1="En Parlak Günleri" title2="Geri Getiriyoruz" />
       </section>
       <section id="hakkimizda">
         <StatsSection />

@@ -4,7 +4,7 @@ import type React from "react"
 
 import { useState } from "react"
 import { motion } from "framer-motion"
-import { Mail, Phone, MapPin, ArrowRight } from "lucide-react"
+import { Mail, Phone, MapPin, ArrowRight, Shield, Heart, Globe, Award } from "lucide-react"
 import { cn } from "@/lib/utils"
 import Link from "next/link"
 
@@ -46,12 +46,38 @@ export default function Footer() {
       <div className="container mx-auto px-4 md:px-6 max-w-7xl relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 py-16">
           <div>
-            <button onClick={() => handleNavClick("#anasayfa")} className="flex items-center gap-2 mb-6">
-              <div className="w-8 h-8 rounded-full bg-gradient-to-r from-blue-500 to-indigo-600 flex items-center justify-center">
-                <div className="w-4 h-4 rounded-full bg-white"></div>
+            <button onClick={() => handleNavClick("#anasayfa")} className="group flex items-center gap-3 mb-6 p-3 rounded-xl bg-gradient-to-r from-blue-50 to-indigo-50 hover:from-blue-100 hover:to-indigo-100 transition-all duration-300 shadow-md hover:shadow-lg">
+              <div className="relative">
+                <img 
+                  src="/logo.png" 
+                  alt="Efe Tıp" 
+                  className="h-12 w-auto transition-transform duration-300 group-hover:scale-110"
+                />
+                <div className="absolute -inset-1 bg-gradient-to-r from-blue-500/20 to-indigo-500/20 rounded-xl blur-sm"></div>
               </div>
-              <span className="text-xl font-bold text-blue-600">Efetıp</span>
+              <div className="flex flex-col">
+                <span className="text-lg font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+                  EFE TIP
+                </span>
+                <span className="text-xs text-gray-500 font-medium">
+                  Laboratuvar Çözümleri
+                </span>
+              </div>
             </button>
+            <div className="flex flex-wrap gap-3 mb-4">
+              <div className="flex items-center gap-2 px-3 py-2 bg-blue-50 rounded-lg">
+                <Shield className="w-4 h-4 text-blue-600" />
+                <span className="text-sm text-gray-700 font-medium">Güvenilir</span>
+              </div>
+              <div className="flex items-center gap-2 px-3 py-2 bg-green-50 rounded-lg">
+                <Award className="w-4 h-4 text-green-600" />
+                <span className="text-sm text-gray-700 font-medium">Kaliteli</span>
+              </div>
+              <div className="flex items-center gap-2 px-3 py-2 bg-purple-50 rounded-lg">
+                <Globe className="w-4 h-4 text-purple-600" />
+                <span className="text-sm text-gray-700 font-medium">Global</span>
+              </div>
+            </div>
             <p className="text-gray-500 mb-6">
               Laboratuvar ekipmanları alanında Türkiye'nin öncü tedarikçisi. Kalite ve güvenilirlik bizim
               önceliğimizdir.
@@ -106,6 +132,14 @@ export default function Footer() {
                   Gizlilik Politikası
                 </Link>
               </li>
+              <li>
+                <Link
+                  href="/kvkk"
+                  className="text-gray-500 hover:text-blue-600 transition-colors duration-200"
+                >
+                  KVKK
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -130,10 +164,10 @@ export default function Footer() {
               <li className="flex items-center gap-3">
                 <Mail className="w-5 h-5 text-blue-600 flex-shrink-0" />
                 <a
-                  href="mailto:efetip@efetip.com.tr"
+                  href="mailto:info@efetip.com.tr"
                   className="text-gray-500 hover:text-blue-600 transition-colors duration-200"
                 >
-                  efetip@efetip.com.tr
+                  info@efetip.com.tr
                 </a>
               </li>
             </ul>
