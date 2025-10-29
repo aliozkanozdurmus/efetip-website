@@ -11,9 +11,6 @@ export default function ProductsPage() {
     { title: "İmmünokimya Testleri", description: "Geniş bir biyobelirteç yelpazesinde 11-21 dakikada sonuç alın.", link: "/urunlerimiz/immunokimya-testleri" },
     { title: "1st Automatic", description: "1st Automatic ile hasta-örnek karışıklığı riskini azaltın. Ön analitik hataları en aza indirmeye yardımcı olmak için tasarlanmış bir iş akışı çözümü.", link: "/urunlerimiz/first-automatic" },
     { title: "Merkezi Kontrol ile AQURE", description: "AQURE, POC IT kurulumunuzun performansını yönetmek için size tam bir genel bakış ve erişim sağlar.", link: "/urunlerimiz/merkezi-kontrol-aqure" },
-    { title: "Kan Gazı Şırıngaları ve Kılcal Tüpler", description: "Güvenilir test sonuçları sağlamak üzere tasarlanmış sayıya alıcılarımızla kan alma ihtiyaçlarınızı karşılayın.", link: "/urunlerimiz/kan-gazi-siringalari" },
-    { title: "Veri Analizleri ve Uzaktan Destek", description: "Sorunları gidermeyi, analizör çalışma sürecini artırın ve veriye dayalı operasyonel kararlar almayı kolaylaştıran uzaktan performans izleme.", link: "/urunlerimiz/veri-analizleri-uzaktan-destek" },
-    { title: "Kan Gazı Analizörleri için KK Ampulleri", description: "Akut bakım teşhisi için KK prosedürlerini otomatikleştirin, başlatın ve yasal uyumluluğu destekleyin.", link: "/urunlerimiz/kk-ampulleri" },
   ];
 
   return (

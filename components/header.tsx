@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
-import { Home, Info, Newspaper, Star, Mail, ChevronDown, Droplet, Monitor, Beaker, Bot, Network, Syringe, Database, FlaskConical, Menu, X } from "lucide-react"
+import { Home, Info, Newspaper, Star, Mail, ChevronDown, Droplet, Monitor, Beaker, Bot, Network, Menu, X } from "lucide-react"
 
 const solutionItems = [
   { name: "Kan Gazı Testleri", href: "/urunlerimiz/kan-gazi-testleri", icon: Droplet },
@@ -12,9 +12,6 @@ const solutionItems = [
   { name: "İmmünokimya Testleri", href: "/urunlerimiz/immunokimya-testleri", icon: Beaker },
   { name: "1st Automatic", href: "/urunlerimiz/first-automatic", icon: Bot },
   { name: "Merkezi Kontrol ile AQURE", href: "/urunlerimiz/merkezi-kontrol-aqure", icon: Network },
-  { name: "Kan Gazı Şırıngaları", href: "/urunlerimiz/kan-gazi-siringalari", icon: Syringe },
-  { name: "Veri Analizleri", href: "/urunlerimiz/veri-analizleri-uzaktan-destek", icon: Database },
-  { name: "KK Ampulleri", href: "/urunlerimiz/kk-ampulleri", icon: FlaskConical },
 ];
 
 const navItems = [
